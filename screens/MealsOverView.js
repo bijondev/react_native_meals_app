@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, FlatList } from "react-native";
 import MealItem from "../components/MealItem";
 import { MEALS, CATEGORIES } from "../data/dummy-data";
 import Category from "../models/category";
+import MediaList from "../components/MealsList";
 
 function MealsOverView({ route, navigation }) {
   const title = route.params.catTitle;
@@ -20,27 +21,7 @@ function MealsOverView({ route, navigation }) {
     });
   }, [catId, navigation]);
 
-  function renderMealItem(itemData) {
-    const mealItemProps = {
-      id: itemData.item.id,
-      title: itemData.item.title,
-      imageUrl: itemData.item.imageUrl,
-      duration: itemData.item.duration,
-      compelexity: itemData.item.complexity,
-      affordibility: itemData.item.affordability,
-    };
-    return <MealItem {...mealItemProps} />;
-  }
-
-  return (
-    <View style={styles.container}>
-      <FlatList
-        data={displayedMeals}
-        keyExtractor={(item) => item.id}
-        renderItem={renderMealItem}
-      />
-    </View>
-  );
+  return <MediaList items={displayedMeals} />;
 }
 
 export default MealsOverView;

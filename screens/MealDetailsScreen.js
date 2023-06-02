@@ -1,30 +1,63 @@
-import { Text, View, Image, StyleSheet, ScrollView, Button } from "react-native";
-import { useLayoutEffect } from "react";
+import {
+  Text,
+  View,
+  Image,
+  StyleSheet,
+  ScrollView,
+  Button,
+} from "react-native";
+import { useLayoutEffect, useContext } from "react";
 import List from "../components/List";
 import MealDetails from "../components/MealDetails";
 import Subtitle from "../components/Subtitle";
 import IconButton from "../components/IconButton";
-import { MEALS } from "../data/dummy-data";
+import { MEALS, CATEGORIES } from "../data/dummy-data";
+import { useDispatch, useSelector } from "react-redux";
+import { addFavorite, removeFavorite } from "../store/redux/favorites";
+// import { FavoritesContext } from "../store/context/favorites-context";
 
 function MealDetailsScreen({ route, navigation }) {
+  // const favoriteMealsCtx = useContext(FavoritesContext);
+  const favoriteMealIds = useSelector((state) => state.favoriteMeals.ids);
+  const dispact = useDispatch();
+
   const mealId = route.params.mealId;
   const selectedMeal = MEALS.find((meal) => meal.id == mealId);
 
+  // const mealIsFavorite = favoriteMealsCtx.ids.includes(mealId);
+  const mealIsFavorite = favoriteMealIds.includes(mealId);
 
-  function headerButtonPressHandeler(){
-    console.log(">>>>>>>>>>>>>>>>>>>>>>");
+  function changefavoriresStatesHandeler() {
+    if (mealIsFavorite) {
+      // favoriteMealsCtx.removeFavorite(mealId);
+      dispact(removeFavorite({ id: mealId }));
+    } else {
+      // favoriteMealsCtx.addFavorite(mealId);
+      dispact(addFavorite({ id: mealId }));
+    }
   }
 
+  useLayoutEffect(() => {
+    const selectedMeal = MEALS.find((meal) => meal.id == mealId).title;
 
-  useLayoutEffect(()=>{
+    navigation.setOptions({
+      title: selectedMeal,
+    });
+  }, [mealId, navigation]);
+
+  useLayoutEffect(() => {
     navigation.setOptions({
       headerRight: () => {
-        return <IconButton icon="star" color="white" onPress={headerButtonPressHandeler} />
-      }
+        return (
+          <IconButton
+            icon={mealIsFavorite ? "star" : "star-outline"}
+            color="white"
+            onPress={changefavoriresStatesHandeler}
+          />
+        );
+      },
     });
-  },[navigation, headerButtonPressHandeler]);
-
-
+  }, [navigation, changefavoriresStatesHandeler]);
 
   return (
     <ScrollView style={styles.rootContainer}>
@@ -39,15 +72,14 @@ function MealDetailsScreen({ route, navigation }) {
       />
 
       <View style={styles.listOuterContainer}>
-        <View style={styles.listContainer} >
+        <View style={styles.listContainer}>
           <Subtitle>Ingredients</Subtitle>
-            <List data={selectedMeal.ingredients}/>
+          <List data={selectedMeal.ingredients} />
 
           <Subtitle>Steps</Subtitle>
-            <List data={selectedMeal.steps}/>
+          <List data={selectedMeal.steps} />
+        </View>
       </View>
-      </View>
-
     </ScrollView>
   );
 }
@@ -55,36 +87,36 @@ function MealDetailsScreen({ route, navigation }) {
 export default MealDetailsScreen;
 const styles = StyleSheet.create({
   rootContainer: {
-    marginBottom: 24
+    marginBottom: 24,
   },
   image: {
     width: "100%",
     height: 250,
   },
-  title:{
-    fontWeight: 'bold',
+  title: {
+    fontWeight: "bold",
     fontSize: 24,
     margin: 8,
-    textAlign: 'center',
-    color: 'white'
+    textAlign: "center",
+    color: "white",
   },
-  detailtext:{
-    color:'white'
+  detailtext: {
+    color: "white",
   },
-  subTitle:{
-    color: 'white',
+  subTitle: {
+    color: "white",
     fontSize: 18,
-    fontWeight: 'bold',
+    fontWeight: "bold",
     margin: 4,
     padding: 6,
-    textAlign: 'center',
-    borderBottomColor: 'white',
-    borderBottomWidth: 2
+    textAlign: "center",
+    borderBottomColor: "white",
+    borderBottomWidth: 2,
   },
-  listOuterContainer:{
-    alignItems: 'center'
+  listOuterContainer: {
+    alignItems: "center",
   },
-  listContainer:{
-    width: '80%'
-  }
+  listContainer: {
+    width: "80%",
+  },
 });
