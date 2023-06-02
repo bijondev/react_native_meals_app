@@ -4,12 +4,12 @@
 
 <h2>Project Screenshots:</h2>
 
-<img src="https://github.com/bijondev/react_native_meals_app/blob/master/screenshot/Screenshot_20230602_122054.png?raw=true" alt="project-screenshot" width="400" height="400/">
+<img src="https://github.com/bijondev/react_native_meals_app/blob/master/screenshot/Screenshot_20230602_122054.png?raw=true" alt="project-screenshot" width="938" height="2038/">
 
-<img src="https://github.com/bijondev/react_native_meals_app/blob/master/screenshot/Screenshot_20230602_122225.png?raw=true" alt="project-screenshot" width="400" height="400/">
+<img src="https://github.com/bijondev/react_native_meals_app/blob/master/screenshot/Screenshot_20230602_122225.png?raw=true" alt="project-screenshot" width="938" height="2038/">
 
-<img src="https://github.com/bijondev/react_native_meals_app/blob/master/screenshot/Screenshot_20230602_122236.png?raw=true" alt="project-screenshot" width="400" height="400/">
+<img src="https://github.com/bijondev/react_native_meals_app/blob/master/screenshot/Screenshot_20230602_122236.png?raw=true" alt="project-screenshot" width="938" height="2038/">
 
-<img src="https://github.com/bijondev/react_native_meals_app/blob/master/screenshot/Screenshot_20230602_122252.png?raw=true" alt="project-screenshot" width="400" height="400/">
+<img src="https://github.com/bijondev/react_native_meals_app/blob/master/screenshot/Screenshot_20230602_122252.png?raw=true" alt="project-screenshot" width="938" height="2038/">
 
-<img src="https://github.com/bijondev/react_native_meals_app/blob/master/screenshot/Screenshot_20230602_122302.png?raw=true" alt="project-screenshot" width="400" height="400/">
+<img src="https://github.com/bijondev/react_native_meals_app/blob/master/screenshot/Screenshot_20230602_122302.png?raw=true" alt="project-screenshot" width="938" height="2038/">
